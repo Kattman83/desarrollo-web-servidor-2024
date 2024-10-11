@@ -8,6 +8,19 @@
     ?>
 </head>
 <body>
+    <?php
+    $productos=[
+        ["Nintendo Switch",300],
+        ["PS 5",450],
+        ["PS 5 pro",800],
+        ["Xbox S",300],
+        ["Xbox X",400]
+    ];
+    for ($i=0;$i<count($productos);$i++){
+        $aleatorio=rand(0,5);
+        array_push($productos[$i],$aleatorio);
+    }
+    ?>
     <form action="" method="post">
         <p>["Nintendo Switch",300],
         ["PS 5",450],
@@ -18,13 +31,7 @@
         <input type="submit" value="ver disponibilidad">
     </form>
     <?php
-    $productos=[
-        ["Nintendo Switch",300],
-        ["PS 5",450],
-        ["PS 5 pro",800],
-        ["Xbox S",300],
-        ["Xbox X",400]
-    ];
+    
     /**
      * añadir al array una tercera columna que será el stock, y se generará 
      * con un rand en 0 y 5
@@ -35,10 +42,7 @@
      * 
      */
 
-    for ($i=0;$i<count($productos);$i++){
-        $aleatorio=rand(0,5);
-        array_push($productos[$i],$aleatorio);
-    }
+    
 
     foreach($productos as $producto){
         list($nombre, $precio, $stock)=$producto;
@@ -49,7 +53,7 @@
         $prodstock=$_POST["prod"];
         $encontrado=false;
         for($i=0;$i<count($productos)&&$encontrado==false;$i++){
-            if ($productos[$i]=$prodstock){
+            if ($productos[$i]==$prodstock){
                 if($productos[$i][2]>0){
                     echo "el producto está en stock ";
                 }
