@@ -18,23 +18,27 @@
         <p>NUMERO B</p><input type="number" name="b" id="b"><br><br>
         <br><br>
         <input type="submit" value="Numeros Primos">
+        <br><br><br>
     </form>
     <?php
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $a=(int)$_POST["a"];
         $b=(int)$_POST["b"];
         $array=array();
-        if($b<$a){
+        if($b<$a){//si $a es mayor que $b
             for($i=$b;$i<=$a;$i++){
                 array_push($array, $i);
             }
         }
-        elseif($a<$b){
+        elseif($a<$b){//si $b es mayor que $a
             for($i=$a;$i<=$b;$i++){
                 array_push($array, $i);
             }
         }
         function esPrimo($numero){//funcion para comprobar si un numero es primo
+            //honestamente, me cuesta mucho entender la logica para averiguar si un numero es primo
+            //debo confesarte que me he apoyado en chat gpt para poder realizar el ejercicio
+            //OJO, en ningun momento he hecho un copy/paste, solo consultar y escribir el codigo mirando para guiarme
             if($numero<=1){
                 return false;
             }
@@ -50,6 +54,10 @@
             if(esPrimo($numero)){
                 array_push($numPrimos, $numero);
             }
+        }
+        echo "los numeros primos entre $a y $b son: ";
+        foreach($numPrimos as $primo){
+            echo "$primo, ";
         }
     }
     ?>
