@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <title>Plantilla 2</title>
+    <title>EJERCICIO IRPF</title>
     <?php
     error_reporting( E_ALL );
     ini_set( "display_errors", 1 );
@@ -19,10 +19,10 @@
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $bruto=(int)$_POST["bruto"];
         $rango1=12450;
-        $rango2=20199;
-        $rango3=35199;
-        $rango4=59999;
-        $rango5=299999;
+        $rango2=20200;
+        $rango3=35200;
+        $rango4=60000;
+        $rango5=300000;
 
         if($bruto<=$rango1){
             $irpf=$bruto*0.19;
