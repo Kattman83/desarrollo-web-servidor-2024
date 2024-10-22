@@ -12,7 +12,7 @@
     ?>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="" method="get">
         <label for="precio">Precio</label>
         <input type="number" name="precio" id="precio"><br><br>
         <label for="iva">IVA</label>
@@ -24,35 +24,41 @@
         <input type="submit" value="Calcular PVP">
     </form>
     <?php
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $precio=(int)$_POST["precio"];
-        $tipoIVA=$_POST["iva"];
+        //ISSET
+
         
-        if($precio!=0){
-            if($tipoIVA=="general"){
-                $precioFinal=$precio*GENERAL;
-                echo "El precio final es $precioFinal";
+        
+        if(isset($_GET["precio"])and isset($_GET["iva"])){
+            $precio=(int)$_GET["precio"];
+            $tipoIVA=$_GET["iva"];
+            if($precio!='' and $tipoIVA!=''){
+                if($tipoIVA=="general"){
+                    $precioFinal=$precio*GENERAL;
+                    echo "El precio final es $precioFinal";
+                }
+                elseif($tipoIVA=="reducido"){
+                    $precioFinal=$precio*REDUCIDO;
+                    echo "El precio final es $precioFinal";
+                }
+                elseif($tipoIVA=="superreducido"){
+                    $precioFinal=$precio*SUPERREDUCIDO;
+                    echo "El precio final es $precioFinal";
+                }
             }
-            elseif($tipoIVA=="reducido"){
-                $precioFinal=$precio*REDUCIDO;
-                echo "El precio final es $precioFinal";
+            else{
+                echo "<p>Por favor, rellena todos los datos</p>";
             }
-            elseif($tipoIVA=="superreducido"){
-                $precioFinal=$precio*SUPERREDUCIDO;
-                echo "El precio final es $precioFinal";
-            }
-        }else{
-            echo "Por favor rellena el formulario";
         }
-       
-        /*
+            
+        
+        /*ESTRUCTURA MATCH
         $precioFinal=match($tipoIVA){
             "general" => $precio * GENERAL,
             "reducido" => $precio * REDUCIDO,
             "superreducido" => $precio * SUPERREDUCIDO
         };*/
 
-    }
+    
     
     ?>
 </body>

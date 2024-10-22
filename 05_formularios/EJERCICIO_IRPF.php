@@ -59,7 +59,7 @@
         }
         $salario_neto=$bruto-$irpf;
 
-        echo "El salario neto es es $salario_neto";
+        echo "El salario neto es  $salario_neto";
     }
     ?>
 </body>

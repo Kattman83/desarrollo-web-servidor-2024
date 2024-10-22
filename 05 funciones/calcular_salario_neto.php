@@ -1,0 +1,45 @@
+<?php
+function calcular_salario_neto($bruto){
+        $rango1=12450;
+        $rango2=20200;
+        $rango3=35200;
+        $rango4=60000;
+        $rango5=300000;
+    if($bruto<=$rango1){
+        $irpf=$bruto*0.19;
+    }
+    elseif($bruto>$rango1&&$bruto<=$rango2){
+        $diferencia=$bruto-$rango1;
+        $irpf=($rango1*0.19)+$diferencia*0.24;
+    }
+    elseif($bruto>$rango2&&$bruto<=$rango3){
+        $diferencia2=$rango2-$rango1;
+        $diferencia3=$bruto-$rango2;
+        $irpf=($rango1*0.19)+($diferencia2*0.24)+($diferencia3*0.3);
+    }
+    elseif($bruto>$rango3&&$bruto<=$rango4){
+        $diferencia2=$rango2-$rango1;
+        $diferencia3=$rango3-$rango2;
+        $diferencia4=$bruto-$rango3;
+        $irpf=($rango1*0.19)+($diferencia2*0.24)+($diferencia3*0.3)+($diferencia4*0.37);
+    }
+    elseif($bruto>$rango4&&$bruto<=$rango5){
+        $diferencia2=$rango2-$rango1;
+        $diferencia3=$rango3-$rango2;
+        $diferencia4=$rango4-$rango3;
+        $diferencia5=$bruto-$rango4;
+        $irpf=($rango1*0.19)+($diferencia2*0.24)+($diferencia3*0.3)+($diferencia4*0.37)+($diferencia5*0.45);
+    }
+    elseif($bruto>$rango5){
+        $diferencia2=$rango2-$rango1;
+        $diferencia3=$rango3-$rango2;
+        $diferencia4=$rango4-$rango3;
+        $diferencia5=$rango5-$rango4;
+        $diferencia6=$bruto-$rango5;
+        $irpf=($rango1*0.19)+($diferencia2*0.24)+($diferencia3*0.3)+($diferencia4*0.37)+($diferencia5*0.45)+($diferencia6*0.47);
+    }
+    $salario_neto=$bruto-$irpf;
+
+    echo "El salario neto es  $salario_neto";
+}
+?>

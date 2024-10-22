@@ -8,7 +8,7 @@
     ?>
 </head>
 <body>
-<form action="" method="post">
+    <form action="" method="post">
         <label for="precio">METER NUMERO O TEXTO</label>
         <input type="number" name="precio" id="precio"><br><br>
         <label for="iva">IVA</label>

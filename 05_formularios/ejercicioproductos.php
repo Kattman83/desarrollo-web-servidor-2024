@@ -27,7 +27,8 @@
         ["PS 5 pro",800],
         ["Xbox S",300],
         ["Xbox X",400]</p>
-        <p>INTRODUCE producto:</p><input type="string" name="prod" >
+        <p>INTRODUCE producto:</p>
+        <input type="string" name="prod" >
         <input type="submit" value="ver disponibilidad">
     </form>
     <?php

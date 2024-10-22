@@ -13,7 +13,7 @@
 </head>
 <body>
 <form action="" method="post">
-    <label for="numeros">Pon tres numeros</label><br><br>
+    <label for="numeros">Pon DOS numeros</label><br><br>
         <p>NUMERO A</p><input type="number" name="a" id="a"><br><br>
         <p>NUMERO B</p><input type="number" name="b" id="b"><br><br>
         <br><br>
