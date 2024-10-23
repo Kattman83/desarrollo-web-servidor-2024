@@ -2,6 +2,7 @@
     function calcular_potencia($base,$exponente){
         if($base==""){
             echo "Por favor introduce base <br>";
+            
         }
         if($exponente==""){
             echo "Por favor introduce exponente <br>";

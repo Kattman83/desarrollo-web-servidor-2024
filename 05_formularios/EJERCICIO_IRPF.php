@@ -8,7 +8,7 @@
     ?>
 </head>
 <body>
-<form action="" method="post">
+    <form action="" method="post">
         <label for="sueldo_bruto">Mete tu sueldo anual</label>
         <input type="number" name="bruto" id="bruto"><br><br>
         <br><br>

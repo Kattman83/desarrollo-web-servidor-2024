@@ -54,8 +54,6 @@
             $bruto=(int)$_POST["bruto"];
             calcular_salario_neto($bruto);
         }
-        
-        
     }
     ?>
 
