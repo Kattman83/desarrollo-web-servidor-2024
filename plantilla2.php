@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <title>Plantilla 2</title>
+    <title>PLANTILLA</title>
     <?php
     error_reporting( E_ALL );
     ini_set( "display_errors", 1 );
