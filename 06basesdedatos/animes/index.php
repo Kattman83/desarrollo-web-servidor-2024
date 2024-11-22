@@ -22,6 +22,13 @@
     <div class="container">
     <a class="btn btn-secondary" href="nuevo_anime(1).php">nuevo_anime</a>
         <?php
+
+        if($_SERVER["REQUEST_METHOD"]== "POST"){
+            $id_anime=$_POST["id_anime"];
+            //echo "<h1>$id_anime</h1>";
+            $sql="DELETE FROM animes WHERE id_anime='$id_anime'";
+            $_conexion -> query($sql);
+        }
             $sql = "SELECT * FROM animes";
             $resultado = $_conexion -> query($sql);
         ?>
@@ -45,6 +52,11 @@
                         echo "<td>" . $fila["anno_estreno"] . "</td>";
                         echo "<td>" . $fila["num_temporadas"] . "</td>";
                         echo "<td>" . $fila["imagen"] . "<td>";
+                        ?>
+                        <td>
+                            <img width="50" heigth="80" src=>
+                        </td> 
+                        <?php
                         echo "</tr>";
                     }
                 ?>
