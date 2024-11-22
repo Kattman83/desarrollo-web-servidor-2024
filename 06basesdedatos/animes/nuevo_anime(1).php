@@ -16,17 +16,28 @@
     
     <div class="container">
         <?php
+            $sql="SELECT * FROM estudios ORDER BY nombre_estudio";
+            $resultado=$_conexion -> query($sql);
+            $estudios=[];
+
+            while($fila=$resultado -> fetch_assoc()){
+                array_push($estudios,$fila["nombre_estudio"]);
+            }
         if($_SERVER["REQUEST_METHOD"]=="POST"){
             $titulo=$_POST["titulo"];
             $nombre_estudio=$_POST["nombre_estudio"];
             $anno_estreno=$_POST["anno_estreno"];
             $num_temporadas=$_POST["num_temporadas"];
-            $ruta_imagen=$_POST["imagen"];
+
+            //imagen -> FILES ES UN ARRAY DOBLE
+            $tmp_ruta_imagen=$_FILES["imagen"]["tmp_name"];
+            $nombre_imagen=$_FILES["imagen"]["name"];
+            move_uploaded_file($tmp_ruta_imagen, "imagenes/$nombre_imagen");
 
             $sql="INSERT INTO animes
             (titulo,nombre_estudio,anno_estreno,num_temporadas,imagen)
             VALUES
-            ('$titulo','$nombre_estudio',$anno_estreno,$num_temporadas,'$ruta_imagen')";
+            ('$titulo','$nombre_estudio',$anno_estreno,$num_temporadas,'./imagenes/$nombre_imagen')";
 
             $_conexion->query($sql);
         }
@@ -38,7 +49,15 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Estudio</label>
-                <input class="form-control" name="nombre_estudio" type="text">
+                <select class="form-select" name="nombre_estudio">
+                    <option value="" selected disabled hidden>---Elige un estudio---</option>
+                    <?php foreach($estudios as $estudio){ ?>
+                        <option value="<?php echo $estudio ?>">
+                            <?php echo $estudio ?>
+                    </option>
+                    <?php } ?>
+
+                </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Año estreno</label>
