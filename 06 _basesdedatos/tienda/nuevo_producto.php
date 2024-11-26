@@ -30,7 +30,11 @@
                 $nombre=$_POST["nombre"];
                 $precio = $_POST["precio"];
                 $categoria = $_POST["categoria"];
-                $stock = $_POST["stock"];
+                if(!isset($_POST["stock"])){
+                    $stock=0;
+                }else{
+                    $stock = $_POST["stock"];
+                }
                 $descripcion = $_POST["descripcion"];
                 // $_FILES, QUE ES UN ARRAY DOBLE!!!
 
