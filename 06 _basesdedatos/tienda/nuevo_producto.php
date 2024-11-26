@@ -30,13 +30,13 @@
                 $nombre=$_POST["nombre"];
                 $precio = $_POST["precio"];
                 $categoria = $_POST["categoria"];
-                if(!isset($_POST["stock"])){
+                if($_POST["stock"]===""){
                     $stock=0;
                 }else{
-                    $stock = $_POST["stock"];
+                    $stock=$_POST["stock"];
                 }
+                echo "<h2>el stock es $stock</h2>";
                 $descripcion = $_POST["descripcion"];
-                // $_FILES, QUE ES UN ARRAY DOBLE!!!
 
                 
                 $direccion_temporal = $_FILES["imagen"]["tmp_name"];
