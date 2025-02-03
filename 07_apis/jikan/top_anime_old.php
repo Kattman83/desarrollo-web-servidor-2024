@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Anime</title>
+    <title>Top Anime old</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <?php
         error_reporting( E_ALL );
@@ -11,13 +11,10 @@
     ?>
 </head>
 <body>
-            
     <?php
-        session_start();
+        $pagina=1;
 
-        
-        
-        $url = "https://api.jikan.moe/v4/top/anime";
+        $url = "https://api.jikan.moe/v4/top/anime?page=$pagina";
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -28,58 +25,7 @@
         $datos = json_decode($respuesta, true);
         $animes = $datos["data"];
         $paginacion = $datos["pagination"];
-        $nextPage=$paginacion["current_page"]+1;
-
-        if($_SERVER["REQUEST_METHOD"]=="POST"){
-            $_SESSION["nextpagina"]=$_POST[""];
-        }
-            
-
     ?>
-    
-    <form method="post">
-        <input class="btn btn-primary" type="submit" name="siguientepag" value="<?php $nextPage ?>" >Siguiente pagina</input>
-        <?php
-            if(!isset($_GET["siguientepag"])){
-                $url = "https://api.jikan.moe/v4/top/anime";
-
-                $curl = curl_init();
-                curl_setopt($curl, CURLOPT_URL, $url);
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                $respuesta = curl_exec($curl);
-                curl_close($curl);
-
-                $datos = json_decode($respuesta, true);
-                $animes = $datos["data"];
-                $paginacion = $datos["pagination"];
-                $nextPage=$paginacion["current_page"]+1;
-
-
-                echo "no lo piya";
-            }else{
-                $pagina=$nextPage;
-                echo "lo piya";
-                echo $pagina;
-                $url = "https://api.jikan.moe/v4/top/anime?page=$pagina";
-
-                $curl = curl_init();
-                curl_setopt($curl, CURLOPT_URL, $url);
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                $respuesta = curl_exec($curl);
-                curl_close($curl);
-
-                $datos = json_decode($respuesta, true);
-                $animes = $datos["data"];
-                $paginacion = $datos["pagination"];
-            }
-        ?>
-    </form>
-    <?php echo "<h1>", $paginacion["current_page"] , "</h1>" ?><br>
-    <?php
-    
-    
-    ?>
-
     <div class="container">
         <form method="get">
             <label>
@@ -129,7 +75,7 @@
                                 <?php 
                             } 
                         }
-                    }elseif($_GET['tipo']==="series"){
+                    }elseif($_GET['tipo']==="TV"||$_GET['tipo']==="TV Special"){
                         foreach($animes as $anime) { 
                             if($anime["type"]==="TV"||$anime["type"]==="TV Special"){
                                 ?>
@@ -150,7 +96,7 @@
                         }
                     }else{
                         foreach($animes as $anime) { 
-                            
+                            if($anime["type"]==="TV"||$anime["type"]==="TV Special"){
                                 ?>
                                 <tr>
                                     <td><?php echo $anime["rank"] ?></td>
@@ -164,7 +110,8 @@
                                         <img width="100px" src="<?php echo $anime["images"]["jpg"]["image_url"] ?>">
                                     </td>
                                 </tr>
-                                <?php  
+                                <?php 
+                            } 
                         }
                     } 
                 }else{
@@ -186,8 +133,6 @@
                 ?>
             </tbody>
         </table>
-    
-        
     </div>
     
 
