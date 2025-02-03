@@ -174,7 +174,7 @@
         if(isset($_GET["tipo"])){
             $type=$_GET["tipo"];
             mostrarAnimesporTipo($type);
-
+            
         }else{
             $pag=1;
             mostrarAnimes($pag);
