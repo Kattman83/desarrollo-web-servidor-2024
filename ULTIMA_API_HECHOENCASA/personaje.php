@@ -76,11 +76,7 @@
 
     ?>
 
-    
-
-    
-    
-
+<a class="btn btn-secondary" type="submit" name="nextP" href="index.php" >Volver</a>
    
 </body>
 </html>
