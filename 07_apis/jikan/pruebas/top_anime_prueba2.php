@@ -3,31 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Anime next</title>
+    <title>Top Anime prueba2</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <?php
         error_reporting( E_ALL );
-        ini_set( "display_errors", 1 ); 
-        #require("top_anime_prueba");
+        ini_set( "display_errors", 1 );    
     ?>
 </head>
 <body>
-    <h1 class="container">ANIMES2</h1>
+    <h1 class="container">ANIMES</h1>
     <?php 
-
-    
-
     if(isset($_GET["nextP"])){
-        session_start();
+        
         $_SESSION['pag'] = $_GET["nextP"];
         $pag=$_GET["nextP"];
         $Npag=htmlspecialchars($pag)+1;
     }else{
-        echo "estoy mahara";
-        $pag=$_SESSION['pag'];
+        $pag=1;
     }
-    
-    
     #mostrar anime
     function mostrarAnimes($pag,$tipo){
         $url = "https://api.jikan.moe/v4/top/anime?page=$pag";
@@ -72,11 +65,8 @@
                                 </td>
                             </tr>
                             <?php 
-                        }
-                        
+                        } 
                     }
-                    $pag=$paginacion["current_page"];
-                        $Npag=$pag+1; 
                 }elseif($tipo==="series"){
                     foreach($animes as $anime) { 
                         if($anime["type"]==="TV"||$anime["type"]==="TV Special"){
@@ -94,10 +84,8 @@
                                 </td>
                             </tr>
                             <?php 
-                        }
+                        } 
                     }
-                    $pag=$paginacion["current_page"];
-                        $Npag=$pag+1;
                 }else{
                     foreach($animes as $anime) { 
                         
@@ -116,8 +104,6 @@
                             </tr>
                             <?php  
                     }
-                    $pag=$paginacion["current_page"];
-                        $Npag=$pag+1;
                 }
             }else{
                 foreach($animes as $anime) { ?>
@@ -133,10 +119,7 @@
                             <img width="100px" src="<?php echo $anime["images"]["jpg"]["image_url"] ?>">
                         </td>
                     </tr>
-        <?php   }
-                $pag=$paginacion["current_page"];
-                $Npag=$pag+1;
-                
+        <?php }
             }
             
              ?>
@@ -145,8 +128,7 @@
             </div>
     <?php
     } # termina mostra animes
-    
-    
+
     ?>
     <div class="container">
         <form method="get">
@@ -162,20 +144,17 @@
             <input type="radio" name="tipo" value="todos">
             Todos
             </label>
-            <button type="submit" >MOSTRAR</button>
+            <button type="submit">MOSTRAR</button>
         </form>
     </div><br><br>
-
-    
-    <?php
-
+    <?php 
         if(isset($_GET["tipo"])){
             $type=$_GET["tipo"];
-            $pag=$Npag;
+            $pag=1;
             mostrarAnimes($pag,$type);
-
+            
         }else{
-            $pag=$Npag;
+            $pag=1;
             $type="todos";
             mostrarAnimes($pag,$type);
         }
@@ -183,7 +162,7 @@
             ?>
             <div class="container">
                 <form>
-                    <a class="btn btn-secondary" type="submit" name="nextP" href="nextPage_anime.php?nextP=<?php echo urlencode($pag); ?>" >Siguiente pagina</a>
+                    <a class="btn btn-secondary" type="submit" name="nextP" href="nextPage_anime2.php?nextP=<?php echo urlencode($pag); ?>" >Siguiente pagina</a>
                 </form>
             </div>
             <?php
@@ -192,12 +171,13 @@
             <div class="container">
                 <form>
                     <a class="btn btn-secondary" type="submit" name="befP" href="befPage_anime.php?befP=<?php echo urlencode($pag); ?>" >Anterior pagina</a>
-                    <a class="btn btn-secondary" type="submit" name="P" href="top_anime_prueba2.php?nextP=<?php echo urlencode($pag); ?>" >Siguiente pagina</a>
+                    <a class="btn btn-secondary" type="submit" name="nextP" href="nextPage_anime2.php?nextP=<?php echo urlencode($pag); ?>" >Siguiente pagina</a>
                 </form>
             </div>
             <?php
         }
-        
+    
     ?>
+    
 </body>
 </html>
