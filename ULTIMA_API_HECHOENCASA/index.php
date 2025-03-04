@@ -65,9 +65,9 @@
             <?php
         }else{       
         ?>
-            <td><a href="personaje.php?id=<?php echo $personaje["id"] ?>"><?php echo $personaje["name"][0] ?></a></td>
-            <td><?php echo $personaje["race"][0] ?></td>
-            <td><?php echo $personaje["gender"][0] ?></td>
+            <td><a href="personaje.php?id=<?php echo $personaje["id"] ?>"><?php echo $personaje["name"] ?></a></td>
+            <td><?php echo $personaje["race"] ?></td>
+            <td><?php echo $personaje["gender"] ?></td>
             <td><img width="100px" src="<?php echo $personaje["image"] ?>"></td>
         <?php
         }
