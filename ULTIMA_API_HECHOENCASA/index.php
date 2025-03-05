@@ -41,6 +41,7 @@
                
             ?>
             </tbody>
+        </table>
             <?php
         
     } # termina mostrar personajes
